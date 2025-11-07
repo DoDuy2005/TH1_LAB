@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <!-- Bootstrap -->
+    @* <link rel="stylesheet" href="~/adminlte/plugins/bootstrap/css/bootstrap.min.css" /> *@
+    <!-- AdminLTE -->
+    <link rel="stylesheet" href="~/css/adminlte.css" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        @Html.Partial("_AdminNavbar")
+
+        <!-- Sidebar -->
+        @Html.Partial("_AdminSidebar")
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        @Html.Partial("_AdminFooter")
+    </div>
+
+    <!-- jQuery -->
+    @* <script src="~/adminlte/plugins/jquery/jquery.min.js"></script> *@
+    <!-- Bootstrap 4 -->
+    <script src="~js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/js/adminlte.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿@* @{
+    ViewData["Title"] = "Student List".
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+} *@
+
+@model IEnumerable<MyWebApp.Models.Student>
+
+<h2>Danh sách sinh viên</h2>
+
+<a asp-action="Create" class="btn btn-primary">Create Student</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ảnh</th> <!-- THÊM CỘT ẢNH -->
+            <th>Mã</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Ngành</th>
+            <th>Giới tính</th>
+            <th>Hệ ĐT</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                @* <td>
+                    @{
+                        var imagePath = s.ProfileImage == "default_avatar.png" 
+                            ? "/images/default_avatar.png" 
+                            : $"/uploads/profiles/{s.ProfileImage}";
+                    }
+                    <img src="@imagePath" 
+                         alt="Ảnh đại diện"
+                         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"
+                         loading="lazy"
+                         onerror="this.src='/images/default_avatar.png'" />
+                </td> *@
+                <td>@s.Id</td>
+                <td>@s.Name</td>
+                <td>@s.DateOfBorth.ToString("dd/MM/yyyy")</td>
+                @{
+                    string str = "";
+                    switch (s.Branch)
+                    {
+                        case Branch.IT:
+                            str = "CNTT";
+                            break;
+                        case Branch.BE:
+                            str = "Kinh tế";
+                            break;
+                        case Branch.CE:
+                            str = "Công trình";
+                            break;
+                        case Branch.EE:
+                            str = "Điện – Điện tử";
+                            break;
+                    }
+                }
+                <td>@str</td>
+                <td>@(s.Gender == Gender.Male ? "Nam" : "Nữ")</td>
+                <td>@(s.IsRegular ? "Chính quy" : "Phi chính quy")</td>
+                <td>@s.Address</td>
+                <td>@s.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
