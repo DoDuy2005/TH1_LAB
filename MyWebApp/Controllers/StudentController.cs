@@ -54,8 +54,14 @@ namespace MyWebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(Student s)
         {
+            if(ModelState.IsValid)
+            {
+                s.Id = listStudents.Last().Id + 1;
+                listStudents.Add(s);
+                return View("Index", listStudents); // Sửa thành Redirect
+            }
             ViewBag.AllGenders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList();
             ViewBag.AllBranches = new List<SelectListItem>()
             {
